@@ -1,31 +1,49 @@
 <!doctype html>
 <html>
   <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles" />
+    <title>LA Attractions</title>
+    <meta name="description" content="A Catalog of Attractions in Los Angeles" />
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="scripts.js"></script>
   </head>
 
   <body>
     <header class="main-header">
-      <h1 class="title">LA TV Shows</h1>
+      <h1 class="title">LA Attractions</h1>
     </header>
+    <div id="slider-container"></div>
+    <div class="slider-entry" style="display: none">
+      <p class="descriptor">Descriptor</p>
+      <input type="range" min="-3" max="3" value="0" class="slider-descriptor">
+    </div>
+    <div style="display: none">
+      <button class="slider-button" onclick="showCards();">Rank</button>
+    </div>
+    
     <div id="card-container"></div>
     <div class="card" style="display: none">
       <div class="card-content">
-        <h2>TV Show Title</h2>
-        <img src="" alt="TV Show Poster" />
-        <ul>
-          <li>Bullet Point 1</li>
-          <li>Bullet Point 2</li>
-          <li>Bullet Point 3</li>
-        </ul>
+        <h2>Attraction</h2>
+        <ul class="station"></ul>
+        <!-- <h3 class="address">Address</h3> -->
+        <img src="" alt="Attraction Image" />
+        <p class="score">Score: </p>
+        <ul class="category"></ul>
+        <ul class="criteria"></ul>
+        <p class="fee">Address</p>
+        <p>Website: <a href="">Website</a></p>
       </div>
     </div>
     <div class="footer">
-      <button onclick="quoteAlert()">Get A Quote!</button>
-      <button onclick="removeLastCard()">Remove A Card!</button>
+      <label for="origin-select">Start Journey From:</label>
+      <select id="origin-select">
+        <option value="">-- Select a Station --</option>
+      </select>
+      <!-- show clicked station as destination -->
+       <span> to </span>
+      <span id="destination-display"></span>
+      <button id="find-route-button" onclick="displayDirections(getMetroRoute(metroGraph, originStation, destinationStation))">Find Route</button>
+      <div id="route-display"></div>
     </div>
   </body>
 </html>
